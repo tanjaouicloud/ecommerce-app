@@ -1,3 +1,5 @@
+import { Action } from '@reduxjs/toolkit'
+
 export const ADD_TO_CART = 'ADD_TO_CART'
 
 export interface Product {
@@ -16,13 +18,12 @@ export interface CartState {
   items: CartItem[]
 }
 
-
 export interface AddToCartAction {
   type: typeof ADD_TO_CART
   payload: Product
 }
 
-export type CartAction = AddToCartAction
+export type CartAction = AddToCartAction | Action<string>
 
 export interface RootState {
   cart: CartState

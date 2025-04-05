@@ -1,45 +1,48 @@
-import { CartState, ADD_TO_CART, CartAction } from './types'
+import { CartState, ADD_TO_CART, CartAction, AddToCartAction } from './types'
 
 const initialState: CartState = {
-  items: [] 
+  items: []
 }
 
-const cartReducer = (state = initialState, action: CartAction): CartState => {
+const cartReducer = (state: CartState = initialState, action: CartAction): CartState => {
   switch (action.type) {
     case ADD_TO_CART:
-      const existingItem = state.items.find(item => item.id === action.payload.id)
-      let updatedItems
+      if (isAddToCartAction(action)) {
+        const existingItem = state.items.find(item => item.id === action.payload.id)
+        let updatedItems
 
-      if (existingItem) {
-        updatedItems = state.items.map(item =>
-          item.id === action.payload.id
-            ? { ...existingItem, quantity: existingItem.quantity + 1 }
-            : item
-        )
-      } else {
-        updatedItems = [...state.items, { ...action.payload, quantity: 1 }]
-      }
+        if (existingItem) {
+          updatedItems = state.items.map(item =>
+            item.id === action.payload.id
+              ? { ...existingItem, quantity: existingItem.quantity + 1 }
+              : item
+          );
+        } else {
+          updatedItems = [...state.items, { ...action.payload, quantity: 1 }]
+        }
 
-      // Save updated cart to local storage only in the browser
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('cartItems', JSON.stringify(updatedItems))
-      }
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('cartItems', JSON.stringify(updatedItems))
+        }
 
-      return {
-        ...state,
-        items: updatedItems
-      }
-    default:
-      // Load items from local storage if in the browser
-      if (typeof window !== 'undefined') {
-        const storedItems = JSON.parse(localStorage.getItem('cartItems') || '[]')
         return {
           ...state,
-          items: storedItems
-        }
+          items: updatedItems,
+        };
       }
-      return state 
+      break
+
+    default:
+    
+      return state
   }
+
+  
+  return state
+}
+
+function isAddToCartAction(action: CartAction): action is AddToCartAction {
+  return action.type === ADD_TO_CART
 }
 
 export default cartReducer
