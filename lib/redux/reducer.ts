@@ -1,10 +1,10 @@
-import { CartState, ADD_TO_CART } from './types'
+import { CartState, ADD_TO_CART, CartAction } from './types'
 
 const initialState: CartState = {
   items: [] 
 }
 
-const cartReducer = (state = initialState, action: any) => {
+const cartReducer = (state = initialState, action: CartAction): CartState => {
   switch (action.type) {
     case ADD_TO_CART:
       const existingItem = state.items.find(item => item.id === action.payload.id)

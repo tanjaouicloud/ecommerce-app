@@ -8,11 +8,9 @@ import { ProductFilter } from '@/components/product/ ProductFilter'
 import { Product, CartItem } from '@/lib/redux/types'
 import { ADD_TO_CART, RootState } from '@/lib/redux/types'
 
-
 function Home() {
   const dispatch = useDispatch()
-
-  const cartItems = useSelector((state: RootState) => state.cart.items)
+  const cartItems = useSelector((state: RootState) => state.cart.items) // Properly typed
 
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState<boolean>(true)
