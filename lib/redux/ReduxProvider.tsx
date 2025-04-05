@@ -1,11 +1,11 @@
-"use client" // Add this line
+"use client" 
 
 import { Provider } from 'react-redux'
 import React, { ReactNode } from 'react'
 import store from './store'
 
 interface ReduxProviderProps {
-  children: ReactNode // Define children as ReactNode
+  children: ReactNode
 }
 
 const ReduxProvider: React.FC<ReduxProviderProps> = ({ children }) => {

@@ -1,9 +1,7 @@
-// /lib/redux/reducer.ts
-
 import { CartState, ADD_TO_CART } from './types'
 
 const initialState: CartState = {
-  items: [] // Start with an empty array
+  items: [] 
 }
 
 const cartReducer = (state = initialState, action: any) => {
@@ -40,7 +38,7 @@ const cartReducer = (state = initialState, action: any) => {
           items: storedItems
         }
       }
-      return state // Return the current state on the server
+      return state 
   }
 }
 

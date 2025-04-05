@@ -8,14 +8,14 @@ interface CartProps {
   total: number
 }
 
-const Cart: React.FC<CartProps> = ({ cartItems = [], total }) => {
+export function Cart({ cartItems = [], total }: CartProps) {
   return (
     <div className="p-4 border-t mt-4">
       <h2 className="text-lg font-bold">Cart</h2>
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
-        <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {cartItems.map((item, index) => (
             <div key={index} className="flex flex-col rounded-lg shadow overflow-hidden">
               <div className="w-full">
@@ -42,5 +42,3 @@ const Cart: React.FC<CartProps> = ({ cartItems = [], total }) => {
     </div>
   )
 }
-
-export default Cart

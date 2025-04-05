@@ -6,7 +6,7 @@ interface ProductFilterProps {
   onCategoryChange: (category: string) => void
 }
 
-const ProductFilter: React.FC<ProductFilterProps> = ({ categories, selectedCategory, onCategoryChange }) => {
+export function ProductFilter({ categories, selectedCategory, onCategoryChange }: ProductFilterProps) {
   return (
     <div className="mb-4 p-4">
       <h2 className="text-xl font-bold">Filter by Category</h2>
@@ -17,11 +17,11 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ categories, selectedCateg
       >
         <option value="">All Categories</option>
         {categories.map((category, index) => (
-          <option key={index} value={category}>{category}</option> // Use index as key
+          <option key={index} value={category}>
+            {category}
+          </option>
         ))}
       </select>
     </div>
   )
 }
-
-export default ProductFilter

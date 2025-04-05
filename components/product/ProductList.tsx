@@ -8,7 +8,7 @@ interface ProductListProps {
   addToCart: (product: Product) => void
 }
 
-const ProductList: React.FC<ProductListProps> = ({ products = [], addToCart }) => {
+export function ProductList({ products = [], addToCart }: ProductListProps) {
   return (
     <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 mx-auto px-4 max-w-screen-lg">
       {products.length === 0 ? (
@@ -41,5 +41,3 @@ const ProductList: React.FC<ProductListProps> = ({ products = [], addToCart }) =
     </div>
   )
 }
-
-export default ProductList
