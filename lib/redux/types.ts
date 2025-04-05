@@ -16,9 +16,14 @@ export interface CartState {
   items: CartItem[]
 }
 
+
 export interface AddToCartAction {
   type: typeof ADD_TO_CART
   payload: Product
 }
 
 export type CartAction = AddToCartAction
+
+export interface RootState {
+  cart: CartState
+}
