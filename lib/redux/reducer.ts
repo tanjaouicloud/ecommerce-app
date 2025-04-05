@@ -1,4 +1,4 @@
-import { CartState, ADD_TO_CART, CartAction, AddToCartAction } from './types'
+import { CartState, ADD_TO_CART, CartAction, AddToCartAction, CartItem } from './types'
 
 const initialState: CartState = {
   items: []
@@ -9,14 +9,14 @@ const cartReducer = (state: CartState = initialState, action: CartAction): CartS
     case ADD_TO_CART:
       if (isAddToCartAction(action)) {
         const existingItem = state.items.find(item => item.id === action.payload.id)
-        let updatedItems
+        let updatedItems: CartItem[]
 
         if (existingItem) {
           updatedItems = state.items.map(item =>
             item.id === action.payload.id
               ? { ...existingItem, quantity: existingItem.quantity + 1 }
               : item
-          );
+          )
         } else {
           updatedItems = [...state.items, { ...action.payload, quantity: 1 }]
         }
@@ -28,16 +28,14 @@ const cartReducer = (state: CartState = initialState, action: CartAction): CartS
         return {
           ...state,
           items: updatedItems,
-        };
+        }
       }
       break
 
     default:
-    
       return state
   }
 
-  
   return state
 }
 
